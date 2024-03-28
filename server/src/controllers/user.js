@@ -95,9 +95,23 @@ const getAllUsers = async (req, res) => {
     }
 };
 
+// Logout API endpoint
+const logout = async (req, res) => {
+    try {
+        res.clearCookie('x-auth-token'); // Clear cookie if using cookies
+
+        res.status(200).json({ message: 'Logout successful' });
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ message: 'Server error' });
+    }
+};
+
+
 
 module.exports = {
     getAllUsers,
     userRegistration,
     userLogin,
+    logout
 };

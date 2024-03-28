@@ -32,6 +32,8 @@
     "pg": "^8.11.3",
     "pg-promise": "^11.5.4",
     "swagger-jsdoc": "^6.0.0",
-    "swagger-ui-express": "^5.0.0"
+    "swagger-ui-express": "^5.0.0",
+    "web3": "^4.7.0",
+    "yamljs": "^0.3.0"
   }
 }

@@ -1,5 +1,6 @@
 const client = require('../database/connection');
 const axios = require('axios');
+const {Web3} = require('web3');
 
 // Define API endpoint for fetching data
 const publicApi = async (req, res) => {
@@ -24,6 +25,21 @@ const publicApi = async (req, res) => {
     }
 };
 
+const web3 = new Web3('https://mainnet.infura.io/v3/YOUR_INFURA_API_KEY'); //Here i didn't get any free api key for if.
+
+const ethereum = async (req, res) => {
+    try {
+        const balanceWei = await web3.eth.getBalance(req.params.address);
+        const balanceEth = web3.utils.fromWei(balanceWei, 'ether');
+
+        res.json({ balance: balanceEth });
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: 'Error fetching balance' });
+    }
+};
+
 module.exports = {
-    publicApi
+    publicApi,
+    ethereum
 }

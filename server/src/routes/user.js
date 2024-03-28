@@ -6,6 +6,7 @@ const {
     getAllUsers,
     userRegistration,
     userLogin,
+    logout,
 } = require('../controllers/user');
 
 // Register a new user API
@@ -16,6 +17,9 @@ router.post('/login', userLogin);
 
 // Authorized user API
 router.get('/', authenticateToken, getAllUsers);
+
+// Logout user 
+router.get('/logout', logout)
 
 
 module.exports = router;

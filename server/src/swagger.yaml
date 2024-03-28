@@ -1,0 +1,100 @@
+swagger: '2.0'
+info:
+  title: User Management API
+  version: '1.0'
+securityDefinitions:
+  BearerAuth:
+    type: apiKey
+    name: Authorization
+    in: header
+    description: Use Bearer scheme and provide your JWT token
+paths:
+  /user/register:
+    post:
+      summary: Register a new user
+      parameters:
+        - in: body
+          name: user
+          required: true
+          schema:
+            $ref: '#/definitions/User'
+      responses:
+        '200':
+          description: User registered successfully
+
+  /user/login:
+    post:
+      summary: Login a registered user
+      parameters:
+        - in: body
+          name: credentials
+          required: true
+          schema:
+            type: object
+            properties:
+              email_address:
+                type: string
+              password:
+                type: string
+      responses:
+        '200':
+          description: Login successful
+        '401':
+          description: Unauthorized
+
+  /user:
+    get:
+      summary: Get all users
+      security:
+        - BearerAuth: []
+      responses:
+        '200':
+          description: A list of users
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/User'
+
+
+  /user/logout:
+    get:
+      summary: Logout user
+      security:
+        - BearerAuth: []
+      responses:
+        '200':
+          description: User logged out successfully
+
+  /public/public-apis:
+    get:
+      summary: Get public APIs
+      security:
+        - BearerAuth: []
+      responses:
+        '200':
+          description: List of public APIs
+
+
+definitions:
+  User:
+    type: object
+    required:
+      - id
+      - first_name
+      - last_name
+      - email_address
+      - contact_number
+      - password
+    properties:
+      id:
+        type: integer
+      first_name:
+        type: string
+      last_name:
+        type: string
+      email_address:
+        type: string
+      contact_number:
+        type: string
+      password:
+        type: string
