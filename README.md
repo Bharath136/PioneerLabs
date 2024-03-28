@@ -15,4 +15,4 @@ Login and Get Token: Before accessing protected routes, you need to log in and o
 Provide Authorization Token: Click on the "Authorize" button in the Swagger UI and provide the token in the following format:
 Bearer <token>
 
-if any confusion you contact to this number === 6362149934 (Bharath)
+if you face any dificulties contact to this number === 6362149934 (Bharath)
